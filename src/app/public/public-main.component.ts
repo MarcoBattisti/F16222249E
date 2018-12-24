@@ -11,14 +11,16 @@ import {ApiConfigService} from '../api-config-service';
 export class PublicMainComponent implements OnInit {
 
   private navbarItems: NavbarItem[];
+  private isDataAvailable: boolean;
 
-  
+
+
   // tslint:disable-next-line:max-line-length
   constructor(private navbarItemService: NavbarItemsService, private apiConfig: ApiConfigService) {}
 
   getNavbarItems() {
     this.navbarItemService.getNavbarItems(this.apiConfig).subscribe(
-      data => { this.navbarItems = data; },
+      data => { this.navbarItems = data;  this.isDataAvailable = true; },
       err => console.error(err),
       () => console.log(this.navbarItems)
     );

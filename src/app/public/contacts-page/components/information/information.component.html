@@ -1,0 +1,30 @@
+<h2 class="m-4 font-weight-bold bottom-line-white">Sedi</h2>
+<div *ngFor="let office of offices " class="col m-5 left-line-white right-line-white">
+  <div class="row m-2">
+    <div class="col-md-1"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+    <div class="col">
+      <h5>{{getStreetWithNumber(office)}} - {{getPostCodeWithCityAndProvince(office)}}</h5>
+    </div>
+  </div>
+  <div class="row m-2">
+    <div class="col-md-1"><i class="fa fa-phone" aria-hidden="true"></i></div>
+    <div class="col">
+      <h5>{{office.phone_number}}</h5>
+    </div>
+  </div>
+  <div class="row m-2">
+    <div class="col-md-1"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+    <div class="col">
+      <h5>{{office.email}}</h5>
+    </div>
+  </div>
+</div>
+<h2 class="m-4 font-weight-bold bottom-line-white">Social</h2>
+<div class="row m-4">
+  <a class="mr-2" href="https://www.linkedin.com/in/lisa-battisti-648453a4">
+    <i class="fa fa-linkedin-square fa-2x footer-social-item" aria-hidden="true"></i>
+  </a>
+  <a class="mr-2" href="https://www.facebook.com/battisti.psicologa/">
+    <i class="fa fa-facebook-square fa-2x footer-social-item" aria-hidden="true"></i>
+  </a>
+</div>

@@ -1,13 +1,88 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+<mdb-navbar *ngIf="isDataAvailable" SideClass="navbar navbar-expand-lg navbar-dark elegant-color sticky-top">
   <mdb-navbar-brand>
     <a class="navbar-brand" href="#">
-      <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="25" alt="">
+      <img src="./assets/Logo1.png" height="50" alt="">
     </a>
   </mdb-navbar-brand>
   <links>
     <div class="navbar-nav">
-      <a [ngClass]="{'enabled': toggle, 'disabled': !toggle}" routerLink="/{{navbarItem.path!=undefined ? navbarItem.path : navbarItem.name.toLowerCase()}}" routerLinkActive="active" class="nav-item nav-link waves-light" *ngFor="let navbarItem of navbarItems" mdbWavesEffect>{{navbarItem.name}}</a>
+      <a routerLink="/{{navbarItem.path!=undefined ? navbarItem.path : navbarItem.name.toLowerCase()}}" routerLinkActive="active" class="nav-item nav-link waves-light" *ngFor="let navbarItem of navbarItems" mdbWavesEffect>{{navbarItem.name}}</a>
     </div>
   </links>
 </mdb-navbar>
-<router-outlet></router-outlet>
+
+<div class="p-0 m-0">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Footer -->
+<footer *ngIf="isDataAvailable" class="page-footer font-small footer-dark pt-3">
+
+  <!-- Footer Text -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-1 mt-md-0 mt-3 p-4 container-fluid">
+
+        <!-- Content -->
+        <img src="./assets/Logo1.png" height="75" alt="">
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mt-md-0 mt-3 footer-item-divider">
+
+        <!-- Content -->
+        <h5 class="text-uppercase font-weight-bold footer-item-title">Naviga nel sito</h5>
+        <a *ngFor="let navbarItem of navbarItems" href="/{{navbarItem.path!=undefined ? navbarItem.path : navbarItem.name.toLowerCase()}}">{{navbarItem.name}}<br> </a>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mt-md-0 mt-3 footer-item-divider">
+
+        <!-- Content -->
+        <h5 class="text-uppercase font-weight-bold footer-item-title">Sedi</h5>
+        <i class="fa fa-map-marker" aria-hidden="true"></i> Via Mazzini, 1 53024 Montalcino (SI) <br>
+        <i class="fa fa-map-marker" aria-hidden="true"></i> Via Po, 5 58033 Castel del Piano (GR)
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mt-md-0 mt-3 footer-item-divider">
+
+        <!-- Content -->
+        <h5 class="text-uppercase font-weight-bold footer-item-title">Seguimi</h5>
+        <a href="https://www.linkedin.com/in/lisa-battisti-648453a4">
+          <i class="fa fa-linkedin-square fa-2x footer-social-item" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/battisti.psicologa/">
+          <i class="fa fa-facebook-square fa-2x footer-social-item" aria-hidden="true"></i>
+        </a>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Text -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-2">
+    Psicologa iscritta all'Albo degli Psicologi della Toscana (nr xxxx) P.I. xxxxxxxxx
+
+    <br>
+
+    Copyrights ©. All Rights Reserved Lisa Battisti.
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

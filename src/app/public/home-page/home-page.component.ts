@@ -20,8 +20,8 @@ export class HomePageComponent implements OnInit {
 
   getCarouselItems() {
     this.carouselItemService.getCarouselItems(this.apiConfig).subscribe(
-      data => { this.carouselItems = data; 
-                console.log(data[0].backgroundLink)},
+      data => { this.carouselItems = data;
+                console.log(data[0].backgroundLink); },
       err => console.error(err),
       () => console.log(this.carouselItems)
     );

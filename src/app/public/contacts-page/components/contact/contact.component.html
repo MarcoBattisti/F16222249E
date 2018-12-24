@@ -1,0 +1,67 @@
+<!-- Default form contact -->
+<form class="text-center border border-light p-4" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+  <p class="h4 mb-3 font-weight-bold">Contattami</p>
+
+  <!-- Name -->
+  <div class="md-form text-left">
+    <input data-error="Campo richiesto" data-success="Giusto" type="text" formControlName="contactFormName"
+           id="defaultContactFormName" mdbInputDirective class="form-control mb-4" placeholder="Nome">
+  </div>
+
+  <!-- Email -->
+  <div class="md-form text-left">
+    <input data-error="Inserire un email valida" data-success="Giusto" type="email"
+           formControlName="contactFormEmail"
+           id="defaultContactFormEmail" mdbInputDirective class="form-control mb-4" placeholder="E-mail">
+  </div>
+
+  <!-- Subject -->
+  <label>Oggetto</label>
+  <ng-select
+    [required]="true"
+    (change)="onChangeSubject()"
+    [ngModelOptions]="{standalone: true}"
+    [(ngModel)]="selected"
+    [items]="contactSubjects"
+    bindLabel="value"
+    bindValue="value"
+    [closeOnSelect]="true"
+    [searchable]="false"
+    placeholder="Seleziona un oggetto">
+  </ng-select>
+
+  <!-- Message -->
+  <div class="md-form text-left">
+    <div *ngIf="selected === 'Altro..'" class="form-group">
+    <textarea data-error="Campo richiesto" data-success="Giusto" formControlName="contactFormOtherSubject"
+              class="form-control rounded-0" mdbInputDirective id="exampleFormControlTextarea3"
+              rows="1" placeholder="Oggetto da specificare.."></textarea>
+    </div>
+  </div>
+
+  <!-- Message -->
+  <div class="md-form text-left">
+    <div class="form-group">
+    <textarea data-error="Campo richiesto" data-success="Giusto" formControlName="contactFormMessage"
+              class="form-control rounded-0" mdbInputDirective id="exampleFormControlTextarea2"
+              rows="3" placeholder="Messaggio"></textarea>
+    </div>
+  </div>
+
+  <!-- Copy -->
+  <div class="custom-control custom-checkbox mb-4">
+    <input formControlName="contactFormCopy" type="checkbox" class="custom-control-input"
+           id="defaultContactFormCopy">
+    <label class="custom-control-label" for="defaultContactFormCopy">Mandami una copia del messaggio</label>
+  </div>
+
+  <!-- Send button -->
+  <button mdbBtn color="elegant" [disabled]="!contactForm.valid " class="z-depth-0 my-4 waves-effect"
+          mdbWavesEffect type="submit" >Invia
+  </button>
+
+</form>
+<!-- Default form contact -->
+
+<app-modal [eventType]=modalEventType></app-modal>
