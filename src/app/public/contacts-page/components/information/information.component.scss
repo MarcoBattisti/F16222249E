@@ -7,6 +7,11 @@ a {
   max-height: fit-content;
 }
 
+.left-line-black {
+  border-left: 2px solid black;
+  max-height: fit-content;
+}
+
 .right-line-white {
   border-right: 2px solid white;
   max-height: fit-content;
@@ -14,5 +19,11 @@ a {
 
 .bottom-line-white {
   border-bottom: 3px solid white;
+  max-width: fit-content;
+}
+
+.border-line-black {
+  border: 2px solid black;
+  max-height: fit-content;
   max-width: fit-content;
 }

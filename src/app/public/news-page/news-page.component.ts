@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PostItem} from './models/post-item';
 import * as _ from 'lodash';
-import {ApiConfigService} from '../../api-config-service';
 import {PostsService} from './services/posts.service';
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-news-page',
@@ -21,14 +21,16 @@ export class NewsPageComponent implements OnInit {
 
   selected: string[];
 
-  constructor(private postsService: PostsService, private apiConfig: ApiConfigService) { }
+  private env = this.appComponent.env;
+
+  constructor(private postsService: PostsService, private appComponent: AppComponent) { }
 
   ngOnInit() {
     this.getPosts();
   }
 
   getPosts() {
-    this.postsService.getPosts(this.apiConfig).subscribe(
+    this.postsService.getPosts(this.env.apiUrl).subscribe(
       data => {
         this.postsArguments = data;
         this.isLoaded = true;

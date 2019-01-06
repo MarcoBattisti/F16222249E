@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: "http://localhost:8000/api",
+  emailUrl: "http://localhost:8000/send/email",
+  apiTimeout: 5000,
+  siteKey: "6LcF54UUAAAAADxcvQ3_vFA5DHIuv1C6RM54ZAN1"
 };
 
 /*

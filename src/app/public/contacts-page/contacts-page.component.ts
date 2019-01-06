@@ -1,9 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ContactsSubjects} from './contacts-subjects';
 import {WorkOffices} from '../../work-offices';
 import {WorkOfficesService} from './services/work-offices.service';
-import {PostsService} from '../news-page/services/posts.service';
-import {ApiConfigService} from '../../api-config-service';
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-contacts-page',
@@ -21,15 +20,15 @@ export class ContactsPageComponent implements OnInit {
   workOffices: WorkOffices[];
 
   private pageIsLoaded = true;
-
-  constructor(private workOfficesService: WorkOfficesService, private apiConfig: ApiConfigService) { }
+  private env = this.appComponent.env;
+  constructor(private workOfficesService: WorkOfficesService, private appComponent: AppComponent) { }
 
   ngOnInit() {
     this.getWorkOffices();
   }
 
   getWorkOffices() {
-    this.workOfficesService.getWorkOffices(this.apiConfig).subscribe(data => {this.workOffices = data; },
+    this.workOfficesService.getWorkOffices(this.env.apiUrl).subscribe(data => {this.workOffices = data; },
     err => console.error(err));
   }
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {EventType} from './event-type.enum';
 import {ModalDirective} from 'angular-bootstrap-md';
 
@@ -9,7 +9,9 @@ import {ModalDirective} from 'angular-bootstrap-md';
 })
 export class ModalComponent implements OnInit {
 
-  @Input() eventType: EventType = EventType.Info;
+  private eventType: EventType = EventType.Info;
+  private title: String;
+  private body: String;
 
   @ViewChild('frame') frame: ModalDirective;
 
@@ -18,8 +20,10 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  showModal(eventType: EventType) {
+  showModal(eventType: EventType, title: String, body: String) {
     this.eventType = eventType;
+    this.title = title;
+    this.body = body;
     this.frame.show();
   }
 }

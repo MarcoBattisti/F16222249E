@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '../../../../../node_modules/@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '../../../../../node_modules/@angular/common/http';
 import {Email} from '../models/email';
-import {ApiConfigService} from '../../../api-config-service';
 import {catchError} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
 
@@ -12,9 +11,9 @@ export class ContactEmailService {
 
   constructor(private http: HttpClient) { }
 
-  sendEmail (email: Email, apiConfig: ApiConfigService): Observable<Email> {
+  sendEmail (email: Email, emailUrl: string): Observable<Email> {
     console.log('Nel metodo sendEmail');
-    return this.http.post<Email>('http://localhost:8000/send/email', email)
+    return this.http.post<Email>(emailUrl, email)
       .pipe(
       catchError(this.handleError)
     );

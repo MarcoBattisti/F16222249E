@@ -5,5 +5,6 @@ export class Email {
   subject: string;
   body: string;
   sendCopy: boolean;
-
+  response: string;
+  
 }

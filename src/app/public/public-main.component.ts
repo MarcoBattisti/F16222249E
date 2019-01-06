@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {NavbarItem} from './home-page/models/navbar-item';
 import {NavbarItemsService} from './home-page/services/navbar-items.service';
-import {ApiConfigService} from '../api-config-service';
+import {WorkOffices} from '../work-offices';
+import {WorkOfficesService} from './contacts-page/services/work-offices.service';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-public-main',
@@ -11,23 +13,30 @@ import {ApiConfigService} from '../api-config-service';
 export class PublicMainComponent implements OnInit {
 
   private navbarItems: NavbarItem[];
+  private workOffices: WorkOffices[];
   private isDataAvailable: boolean;
 
+  env = this.appComponent.env;
 
 
   // tslint:disable-next-line:max-line-length
-  constructor(private navbarItemService: NavbarItemsService, private apiConfig: ApiConfigService) {}
+  constructor(private navbarItemService: NavbarItemsService, private workOfficesService: WorkOfficesService, private appComponent: AppComponent) {}
 
   getNavbarItems() {
-    this.navbarItemService.getNavbarItems(this.apiConfig).subscribe(
+    this.navbarItemService.getNavbarItems(this.env.apiUrl).subscribe(
       data => { this.navbarItems = data;  this.isDataAvailable = true; },
-      err => console.error(err),
-      () => console.log(this.navbarItems)
+      err => console.error(err)
     );
+  }
+
+  getWorkOffices() {
+    this.workOfficesService.getWorkOffices(this.env.apiUrl).subscribe(data => {this.workOffices = data; },
+    err => console.error(err));
   }
 
   ngOnInit() {
     this.getNavbarItems();
+    this.getWorkOffices();
   }
 
 }

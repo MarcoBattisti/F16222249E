@@ -1,4 +1,7 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~ng-snotify/styles/simple";
+@import "~angular-vertical-timeline/dist/vertical-timeline.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .background-fit-content{
   width: fit-content;
@@ -7,4 +10,13 @@
 .news-flex-content-center{
   display: flex;
   justify-content: center;
+}
+
+.fit-window-screen {
+  min-height: 70vh
+}
+
+.fit-content-page {
+  min-height: 70vh;
+  display: block;
 }

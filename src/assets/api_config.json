@@ -1,6 +1,0 @@
-{
-  "host": "http://localhost:",
-  "port": 8000,
-  "context": "/api",
-  "apiTimeout": 5000
-}

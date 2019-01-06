@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, Event, RouterEvent} from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
 export class AppComponent {
 
   loading = true;
-
+  env = environment;
+  
   constructor(private router: Router) {
     router.events.subscribe((event: RouterEvent) => {
       this.navigationInterceptor(event);

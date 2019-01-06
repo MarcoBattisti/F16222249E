@@ -1,51 +1,69 @@
 <!-- Default form contact -->
-<form class="text-center border border-light p-4" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+<form class="text-center p-4 fit-content-page" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
   <p class="h4 mb-3 font-weight-bold">Contattami</p>
 
   <!-- Name -->
   <div class="md-form text-left">
-    <input data-error="Campo richiesto" data-success="Giusto" type="text" formControlName="contactFormName"
-           id="defaultContactFormName" mdbInputDirective class="form-control mb-4" placeholder="Nome">
+    <input mdbInput mdbValidate type="text" formControlName="contactFormName"
+           id="defaultContactFormName" class="form-control mb-4" placeholder="Nome">
+      <mdb-error *ngIf="contactFormName.invalid && (contactFormName.dirty || contactFormName.touched)">
+        <span *ngIf="contactFormName.errors.required">Campo Richiesto</span>
+        <span *ngIf="contactFormName.errors.maxlength">Deve contenere al massimo {{formNameMaxLength}} caratteri</span>
+      </mdb-error>
+    <mdb-success *ngIf="contactFormName.valid && (contactFormName.dirty || contactFormName.touched)"></mdb-success>
   </div>
 
   <!-- Email -->
   <div class="md-form text-left">
-    <input data-error="Inserire un email valida" data-success="Giusto" type="email"
+    <input mdbInput mdbValidate type="email"
            formControlName="contactFormEmail"
-           id="defaultContactFormEmail" mdbInputDirective class="form-control mb-4" placeholder="E-mail">
+           id="defaultContactFormEmail" class="form-control mb-5" placeholder="E-mail">
+    <mdb-error *ngIf="contactFormEmail.invalid && (contactFormEmail.dirty || contactFormEmail.touched)">
+      <span *ngIf="contactFormEmail.errors.required">Campo Richiesto</span>
+      <ul *ngIf="!contactFormEmail.errors.required">
+        <li *ngIf="contactFormEmail.errors.maxlength">Deve contenere al massimo {{formEmailMaxLength}} caratteri</li>
+        <li *ngIf="contactFormEmail.errors.email">Deve essere un e-mail valida</li>
+      </ul>
+    </mdb-error>
+    <mdb-success *ngIf="contactFormEmail.valid && (contactFormEmail.dirty || contactFormEmail.touched)"></mdb-success>
   </div>
 
-  <!-- Subject -->
-  <label>Oggetto</label>
-  <ng-select
-    [required]="true"
-    (change)="onChangeSubject()"
-    [ngModelOptions]="{standalone: true}"
-    [(ngModel)]="selected"
-    [items]="contactSubjects"
-    bindLabel="value"
-    bindValue="value"
-    [closeOnSelect]="true"
-    [searchable]="false"
-    placeholder="Seleziona un oggetto">
-  </ng-select>
+  <div class="text-left">
+    <!-- Subject -->
+    <label>Oggetto</label>
+    <ng-select
+      [required]="true"
+      (change)="onChangeSubject()"
+      [ngModelOptions]="{standalone: true}"
+      [(ngModel)]="selected"
+      [items]="contactSubjects"
+      bindLabel="value"
+      bindValue="value"
+      [closeOnSelect]="true"
+      [searchable]="false"
+      placeholder="Seleziona un oggetto">
+    </ng-select>
+  </div>
 
   <!-- Message -->
-  <div class="md-form text-left">
-    <div *ngIf="selected === 'Altro..'" class="form-group">
-    <textarea data-error="Campo richiesto" data-success="Giusto" formControlName="contactFormOtherSubject"
-              class="form-control rounded-0" mdbInputDirective id="exampleFormControlTextarea3"
+  <div *ngIf="selected === 'Altro..'" class="form-group md-form text-left">
+    <textarea type="text" data-error="Campo richiesto" data-success="   " formControlName="contactFormOtherSubject"
+              class="md-textarea form-control" mdbInputDirective id="exampleFormControlTextarea3"
               rows="1" placeholder="Oggetto da specificare.."></textarea>
-    </div>
   </div>
 
   <!-- Message -->
   <div class="md-form text-left">
     <div class="form-group">
-    <textarea data-error="Campo richiesto" data-success="Giusto" formControlName="contactFormMessage"
-              class="form-control rounded-0" mdbInputDirective id="exampleFormControlTextarea2"
-              rows="3" placeholder="Messaggio"></textarea>
+    <textarea mdbInput mdbValidate formControlName="contactFormMessage"
+              class="md-textarea form-control mb-4" id="exampleFormControlTextarea2"
+              rows="2" placeholder="Messaggio"></textarea>
+    <mdb-error *ngIf="contactFormMessage.invalid && (contactFormMessage.dirty || contactFormMessage.touched)">
+        <span *ngIf="contactFormMessage.errors.required">Campo Richiesto</span>
+        <span *ngIf="contactFormMessage.errors.maxlength">Deve contenere al massimo {{formBodyMaxLength}} caratteri</span>
+      </mdb-error>
+    <mdb-success *ngIf="contactFormMessage.valid && (contactFormMessage.dirty || contactFormMessage.touched)"></mdb-success>
     </div>
   </div>
 
@@ -56,12 +74,28 @@
     <label class="custom-control-label" for="defaultContactFormCopy">Mandami una copia del messaggio</label>
   </div>
 
+  <div class="row justify-content-center">
+    <div class="background-fit-content">
+      <re-captcha formControlName="captchaForm" (resolved)="resolved($event)" ></re-captcha>
+    </div>
+  </div>
+
   <!-- Send button -->
-  <button mdbBtn color="elegant" [disabled]="!contactForm.valid " class="z-depth-0 my-4 waves-effect"
+  <button mdbBtn color="elegant" [disabled]="!contactForm.valid" class="z-depth-0 my-4 waves-effect"
           mdbWavesEffect type="submit" >Invia
   </button>
 
 </form>
 <!-- Default form contact -->
+<ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Invio in corso...
+      </h3>
+    </div>
+  </ng-template>
+  
+  <ngx-loading [show]="loading" [config]="{primaryColour: primaryColour, secondaryColour: secondaryColour, tertiaryColour: primaryColour, backdropBorderRadius: '3px'}"
+    [template]="customLoadingTemplate"></ngx-loading>
 
-<app-modal [eventType]=modalEventType></app-modal>
+  <ng-snotify class="simple"></ng-snotify>

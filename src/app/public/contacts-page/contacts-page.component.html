@@ -1,8 +1,8 @@
-<div class="row m-0" style="background-image: url('./assets/contacts-page-background.jpg')">
-  <div class="col white-text">
-    <app-information [offices]="workOffices"></app-information>
+<div class="row justify-content-md-center bg m-0" >
+  <div class="col-md-4 m-4 rounded white">
+    <app-contact [contactSubjects]="contactSubjects"></app-contact>
   </div>
-  <div class="col-md-5 p-0 white">
-    <app-contact [contactSubjects]="contactSubjects" [apiConfig]="apiConfig"></app-contact>
+  <div class="col-md-4 m-4 text-white">
+    <app-information [offices]="workOffices"></app-information>
   </div>
 </div>

@@ -11,7 +11,7 @@
   </links>
 </mdb-navbar>
 
-<div class="p-0 m-0">
+<div class="p-0 m-0 fit-window-screen">
   <router-outlet></router-outlet>
 </div>
 
@@ -48,8 +48,9 @@
 
         <!-- Content -->
         <h5 class="text-uppercase font-weight-bold footer-item-title">Sedi</h5>
-        <i class="fa fa-map-marker" aria-hidden="true"></i> Via Mazzini, 1 53024 Montalcino (SI) <br>
-        <i class="fa fa-map-marker" aria-hidden="true"></i> Via Po, 5 58033 Castel del Piano (GR)
+        <div *ngFor="let office of workOffices">
+          <i class="fa fa-map-marker" aria-hidden="true"></i> {{office.street}}, {{office.number}} {{office.post_code}} {{office.city}} ({{office.province}}) <br>
+        </div>
 
       </div>
       <!-- Grid column -->
