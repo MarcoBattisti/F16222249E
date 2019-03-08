@@ -20,6 +20,6 @@ export class InformationComponent implements OnInit {
   }
 
   public getPostCodeWithCityAndProvince(office: WorkOffices): string {
-    return `${office.post_code}, ${office.city}(${office.province})`;
+    return `${office.post_code}, ${office.city} (${office.province})`;
   }
 }

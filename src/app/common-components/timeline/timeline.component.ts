@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TimelineEvent } from './timeline-event';
+import { TimelineEvent } from './model/timeline-event';
+import {TimelineService} from './service/timeline-service';
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-timeline',
@@ -8,15 +10,24 @@ import { TimelineEvent } from './timeline-event';
 })
 export class TimelineComponent implements OnInit {
 
-  colorPattern = new RegExp("#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$");
+  env = this.appComponent.env;
+  template = './timeline.component.scrolleffect';
 
-  @Input() timelineEvents: TimelineEvent[];
+  colorPattern = new RegExp('#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$');
+
+  timelineEvents: TimelineEvent[];
+
+  constructor(private timelineService: TimelineService, private appComponent: AppComponent) {}
 
   ngOnInit() {
-    this.timelineEvents.forEach(timelineEvent =>{
-      if(!this.colorIsValid(timelineEvent.color)){
-        timelineEvent.color = "#999999";
-      }
+
+    this.timelineService.getTimelineEvents(this.env.apiUrl).subscribe(data => {
+      this.timelineEvents = data;
+      this.timelineEvents.forEach(timelineEvent => {
+        if (!this.colorIsValid(timelineEvent.color)) {
+          timelineEvent.color = '#999999';
+        }
+      });
     });
   }
 

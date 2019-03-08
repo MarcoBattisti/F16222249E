@@ -2,21 +2,58 @@
 @import "~ng-snotify/styles/simple";
 @import "~angular-vertical-timeline/dist/vertical-timeline.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
 
-.background-fit-content{
-  width: fit-content;
+
+
+body {
+  font-size: .9rem;
 }
 
-.news-flex-content-center{
-  display: flex;
-  justify-content: center;
+.page-wrapper.toggled .sidebar {
+  left: -300px;
 }
 
-.fit-window-screen {
-  min-height: 70vh
+// angular perfect scrollbar style
+.sidebar .ps.ps--scrolling-y>.ps__rail-y,
+.sidebar>.ps.ps--scrolling-x>.ps__rail-x,
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: transparent !important;
 }
 
-.fit-content-page {
-  min-height: 70vh;
-  display: block;
+.sidebar .ps.ps--active-y>.ps__rail-y:hover,
+.sidebar>.ps.ps--active-y>.ps__rail-y.ps--clicking {
+  width: 10px !important;
 }
+
+.ps__thumb-y {
+  background-color: #fff !important;
+  width: 6px !important;
+  border-radius: 0px !important;
+  opacity: .5;
+  .background-fit-content {
+    width: fit-content;
+  }
+}
+  .news-flex-content-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .fit-content-page {
+    min-height: 70vh;
+    display: block;
+  }
+
+  .fit-window-screen {
+    min-height: 70vh
+  }

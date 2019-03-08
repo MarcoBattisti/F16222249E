@@ -1,0 +1,38 @@
+<div class="container-fluid row">
+  <div class="col-md-2">
+    <h2 class="text-center" >Utenti online</h2>
+    <ngx-charts-number-card
+      [cardColor]="color"
+      [bandColor]="bandColor"
+      [results]="usersOnline"
+      (select)="onSelect($event)">
+    </ngx-charts-number-card>
+  </div>
+
+  <div class="col-md-9">
+    <h2 class="text-center" >Visite settimanali</h2>
+    <ngx-charts-line-chart
+      [results]="lineChartValues"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [showGridLines]="false"
+      (select)="onSelect($event)">
+    </ngx-charts-line-chart>
+  </div>
+
+  <div class="col-md-3">
+    <h2 class="text-center" >Tempo medio di ogni visita</h2>
+    <ngx-charts-number-card
+      [cardColor]="color"
+      [bandColor]="'#1310A1'"
+      [results]="timeAverage"
+      (select)="onSelect($event)">
+    </ngx-charts-number-card>
+  </div>
+</div>

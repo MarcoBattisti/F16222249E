@@ -1,4 +1,4 @@
-<mdb-navbar *ngIf="isDataAvailable" SideClass="navbar navbar-expand-lg navbar-dark elegant-color sticky-top">
+<mdb-navbar *ngIf="isDataAvailable" SideClass="navbar navbar-expand-lg navbar-dark elegant-color sticky-top scrolling-navbar">
   <mdb-navbar-brand>
     <a class="navbar-brand" href="#">
       <img src="./assets/Logo1.png" height="50" alt="">
@@ -12,8 +12,9 @@
 </mdb-navbar>
 
 <div class="p-0 m-0 fit-window-screen">
-  <router-outlet></router-outlet>
+  <router-outlet *ngIf="loading === false"></router-outlet>
 </div>
+<ngx-loading [show]="loading"></ngx-loading>
 
 <!-- Footer -->
 <footer *ngIf="isDataAvailable" class="page-footer font-small footer-dark pt-3">
@@ -49,7 +50,7 @@
         <!-- Content -->
         <h5 class="text-uppercase font-weight-bold footer-item-title">Sedi</h5>
         <div *ngFor="let office of workOffices">
-          <i class="fa fa-map-marker" aria-hidden="true"></i> {{office.street}}, {{office.number}} {{office.post_code}} {{office.city}} ({{office.province}}) <br>
+          <i class="fa fa-map-marker" aria-hidden="true"></i> {{office.street}}, {{office.number}} - {{office.post_code}} {{office.city}} ({{office.province}}) <br>
         </div>
 
       </div>

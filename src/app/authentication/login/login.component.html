@@ -1,0 +1,28 @@
+<div id="LoginForm" class="container-fluid">
+  <div class="login-form">
+    <div class="main-div">
+      <div class="panel">
+        <img src="../../../assets/Logo1.png" alt="Logo" class="img-fluid">
+        <p>Inserisci email e password</p>
+      </div>
+      <form id="Login" [formGroup]="form" (ngSubmit)="login()" class="text-center">
+
+        <div class="form-group">
+
+
+          <input type="email" placeholder="Email" formControlName="email" class="form-control" id="inputEmail">
+
+        </div>
+
+        <div class="form-group">
+
+          <input type="password" placeholder="Password" formControlName="password" class="form-control"
+                 id="inputPassword">
+
+        </div>
+        <button type="submit" class="btn btn-primary m-0">Login</button>
+
+      </form>
+    </div>
+  </div>
+</div>

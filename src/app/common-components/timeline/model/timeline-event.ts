@@ -7,7 +7,7 @@ export class TimelineEvent {
     color: string;
     icon: string;
 
-    constructor(id:number, year: number, title: string, text: string, color: string, icon: string){
+    constructor(id: number, year: number, title: string, text: string, color: string, icon: string) {
         this.id = id;
         this.year = year;
         this.title = title;

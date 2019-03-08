@@ -1,5 +1,9 @@
 $color-center-line: grey;
 
+.card-body{
+  padding: 0;
+}
+
 .timeline {
     list-style: none;
     padding: 0px 50px;
@@ -60,7 +64,6 @@ $color-center-line: grey;
             font-size: 1.4em;
             text-align: center;
             position: absolute;
-            top: 16px;
             left: 50%;
             margin-left: -25px;
             background-color: #999999;
@@ -130,7 +133,6 @@ $color-center-line: grey;
     ul.timeline > li > .timeline-badge {
         left: 15px;
         margin-left: 0;
-        top: 20px;
     }
 
     ul.timeline > li > .timeline-panel {

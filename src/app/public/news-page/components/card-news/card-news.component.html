@@ -1,6 +1,6 @@
 <!-- News jumbotron -->
 <div class="col-md-8 jumbotron text-center hoverable p-0 rounded">
-  <h4 *ngIf="isImportant" class="yellow-text p-1 font-weight-bold background-fit-content rounded grey darken-2">
+  <h4 *ngIf="isImportant" class="important-news-header yellow-text p-1 font-weight-bold background-fit-content rounded grey darken-2">
     Più importante <i class="fa fa-star" aria-hidden="true"></i>
   </h4>
   <!-- Grid row -->
@@ -30,10 +30,10 @@
 
       <h4 class="h4 mb-4">{{data.title}}</h4>
 
-      <p class="font-weight-normal">{{(data.body.length>6)? (data.body | slice:0:275)+'..' : (data.body)}}</p>
+      <p class="font-weight-normal">{{(data.body.length>6)? (data.body | slice:0:250)+'..' : (data.body)}}</p>
       <p class="font-weight-normal">da <a><strong>{{data.author}}</strong></a>, {{data.date | date:"dd/MM/yy"}}</p>
 
-      <a mdbBtn color="success" mdbWavesEffect>Leggi di più..</a>
+      <a [routerLink]="['/news', data.id]" mdbBtn color="elegant" mdbWavesEffect>Leggi di più..</a>
 
     </div>
     <!-- Grid column -->

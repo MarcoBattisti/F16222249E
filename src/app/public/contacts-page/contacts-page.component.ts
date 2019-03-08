@@ -21,14 +21,10 @@ export class ContactsPageComponent implements OnInit {
 
   private pageIsLoaded = true;
   private env = this.appComponent.env;
-  constructor(private workOfficesService: WorkOfficesService, private appComponent: AppComponent) { }
-
-  ngOnInit() {
-    this.getWorkOffices();
+  constructor(private workOfficesService: WorkOfficesService, private appComponent: AppComponent) {
+    this.workOffices = this.workOfficesService.workOffices;
   }
 
-  getWorkOffices() {
-    this.workOfficesService.getWorkOffices(this.env.apiUrl).subscribe(data => {this.workOffices = data; },
-    err => console.error(err));
+  ngOnInit() {
   }
 }
