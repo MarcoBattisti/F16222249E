@@ -8,10 +8,6 @@ export const environment = {
   emailUrl: 'http://localhost:8000/send/email',
   apiTimeout: 5000,
   siteKey: '6LcF54UUAAAAADxcvQ3_vFA5DHIuv1C6RM54ZAN1',
-  // Environment variables of Clicky site in order to get stats
-  statsSiteId: '101170484',
-  statsSiteKey: '76fe1414162023f1',
-  statsUrl: 'https://api.clicky.com/api/stats/4?site_id=101170484&sitekey=76fe1414162023f1'
 };
 
 /*

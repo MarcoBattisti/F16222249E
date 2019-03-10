@@ -11,7 +11,11 @@ export class StatsService {
 
   constructor(private http: HttpClient) {}
 
-  getVisitorsOnline(statsUrl: string): Observable<GenericClicky<SimpleClicky>[]> {
-    return this.http.options<GenericClicky<SimpleClicky>[]>( statsUrl + '&type=visitors-online&output=json');
+  getVisitorsOnline(apiUrl: string): Observable<GenericClicky<SimpleClicky>[]> {
+    return this.http.get<GenericClicky<SimpleClicky>[]>( apiUrl + '/stats/users-online');
+  }
+
+  getTimeAverage(apiUrl: string): Observable<GenericClicky<SimpleClicky>[]> {
+    return this.http.get<GenericClicky<SimpleClicky>[]>( apiUrl + '/stats/time-average');
   }
 }

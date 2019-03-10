@@ -12,14 +12,11 @@ export class PrivateHomePageComponent implements OnInit {
 
   env = this.appComponent.env;
 
-  usersOnline: CardChart[];
+  // Card chart users online
+  usersOnline;
 
-/*    = [
-    {
-      'name': 'Online',
-      'value': 1
-    }
-  ];*/
+  // Card chart time average
+  timeAverage;
 
   // options
   color = '#000';
@@ -76,29 +73,32 @@ export class PrivateHomePageComponent implements OnInit {
   gradient = true;
   showLegend = false;
 
-  // Card chart time average
-
-  timeAverage = [
-    {
-      'name': '',
-      'value': '2m 23s'
-    }
-  ];
-
   constructor(private statsService: StatsService, private appComponent: AppComponent) { }
 
   ngOnInit() {
     this.getVisitorsOnline();
+    this.getTimeAverage();
   }
 
   getVisitorsOnline() {
-    this.statsService.getVisitorsOnline(this.env.statsUrl).subscribe(
+    this.statsService.getVisitorsOnline(this.env.apiUrl).subscribe(
       data => {
-
         const cardChart = new CardChart();
-        cardChart.name = 'Online';
+        cardChart.name = '';
         cardChart.value = data[0].dates[0].items[0].value;
-        this.usersOnline.push(cardChart);
+        this.usersOnline = [cardChart];
+      },
+      err => console.error(err)
+    );
+  }
+
+  getTimeAverage() {
+    this.statsService.getTimeAverage(this.env.apiUrl).subscribe(
+      data => {
+        const cardChart = new CardChart();
+        cardChart.name = '';
+        cardChart.value = data[0].dates[0].items[0].value;
+        this.timeAverage = [cardChart];
       },
       err => console.error(err)
     );
