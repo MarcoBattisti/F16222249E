@@ -1,2 +1,2 @@
-<app-introduction></app-introduction>
-<app-list-of-services></app-list-of-services>
+<app-introduction *ngIf="settings != null" [settings]="settings"></app-introduction>
+<app-list-of-services *ngIf="settings != null" [settings]="settings"></app-list-of-services>

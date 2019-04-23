@@ -1,5 +1,5 @@
 <!-- Default form contact -->
-<form class="text-center p-4 fit-content-page" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+<form class="text-center p-2 fit-content-page" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
   <p class="h4 mb-3 font-weight-bold">Contattami</p>
 
@@ -95,7 +95,7 @@
     </div>
   </ng-template>
   
-  <ngx-loading [show]="loading" [config]="{primaryColour: primaryColour, secondaryColour: secondaryColour, tertiaryColour: primaryColour, backdropBorderRadius: '3px'}"
+  <ngx-loading [show]="loading"
     [template]="customLoadingTemplate"></ngx-loading>
 
   <ng-snotify class="simple"></ng-snotify>

@@ -7,7 +7,7 @@ export const environment = {
   apiUrl: 'http://localhost:8000/api',
   emailUrl: 'http://localhost:8000/send/email',
   apiTimeout: 5000,
-  siteKey: '6LcF54UUAAAAADxcvQ3_vFA5DHIuv1C6RM54ZAN1',
+  siteKey: '6Lc0JJsUAAAAAOoMvDmWrqKx2iXtRdqrhja6RMLW'
 };
 
 /*

@@ -9,9 +9,9 @@ import {ModalDirective} from 'angular-bootstrap-md';
 })
 export class ModalComponent implements OnInit {
 
-  private eventType: EventType = EventType.Info;
-  private title: String;
-  private body: String;
+  eventType: EventType = EventType.Info;
+  title: String;
+  body: String;
 
   @ViewChild('frame') frame: ModalDirective;
 

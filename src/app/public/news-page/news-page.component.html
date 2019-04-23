@@ -1,7 +1,7 @@
-<div *ngIf="mainPostsAreLoaded">
-  <div class=" grey lighten-1 row justify-content-center p-0 m-0">
-    <app-carousel-main-posts *ngIf="countOfMainTopic() > 1" [datas]="postsArguments" ></app-carousel-main-posts>
-    <app-card-news class="m-4 news-flex-content-center" *ngIf="countOfMainTopic() === 1" [data]="postsArguments[0]" [isImportant]="true"></app-card-news>
+<div *ngIf="pagedPostsAreLoaded && listOfPosts != null && listOfPosts.length > 0">
+  <div class="grey lighten-1 row justify-content-center p-0 m-0" ng *ngIf="mainPostsAreLoaded">
+    <app-carousel-main-posts class="m-2" class="m-4" *ngIf="countOfMainTopic() > 1" [datas]="postsArguments" ></app-carousel-main-posts>
+    <app-card-news class="m-2 news-flex-content-center" *ngIf="countOfMainTopic() === 1" [data]="postsArguments[0]" [isImportant]="true"></app-card-news>
   </div>
 
   <ul id="topPage" class="nav justify-content-center grey lighten-2 py-3">
@@ -45,4 +45,8 @@
       </li>
     </ul>
   </nav>
+</div>
+
+<div class="m-4 jumbotron text-center hoverable p-2 rounded inline-block" *ngIf="mainPostsAreLoaded && (listOfPosts == null || listOfPosts.length < 1)">
+  <h4><i><mdb-icon fas icon="info-circle"></mdb-icon> Al momento non ci sono notizie..</i></h4>
 </div>

@@ -1,60 +1,34 @@
-<div class="container second-portion">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-lg-4">
-      <div class="box">
-        <div class="icon">
-          <div class="image"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-          <div class="info">
-            <h3 class="title">{{email_section}}</h3>
-            <p *ngFor="let workOffice of workOffices">
-              <b>Studio di {{workOffice.city}} ({{workOffice.province}})</b>
-              <br>
-              <i class="fa fa-envelope" aria-hidden="true"></i> {{workOffice.email}}
-              <br>
-              <br>
-            </p>
+<section class="welcome-website">
+  <div class="container">
+    <div class="row mar-top-30">
+      <div class="col-sm-4">
+        <div class="box text-center contact-us-box">
+          <div class="incon-box">
+            <i class="fa fa-map" aria-hidden="true"></i>
           </div>
+          <h3 class="box-tittle">I miei uffici </h3>
+          <p class="box-text" *ngFor="let workOffice of workOffices">{{workOffice.street}}, {{workOffice.number}} - {{workOffice.post_code}}, {{workOffice.city}} ({{workOffice.province}})</p>
         </div>
-        <div class="space"></div>
+      </div>
+      <div class="col-sm-4">
+        <div class="box text-center contact-us-box">
+          <div class="incon-box">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+          </div>
+          <h3 class="box-tittle">Telefono </h3>
+          <p class="box-text"*ngFor="let workOffice of workOffices">{{workOffice.phone_number}} </p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="box text-center contact-us-box">
+          <div class="incon-box">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          </div>
+          <h3 class="box-tittle">Email </h3>
+          <p class="box-text" *ngFor="let workOffice of workOffices">{{workOffice.email}}</p>
+        </div>
       </div>
     </div>
-
-    <div class="col-xs-12 col-sm-6 col-lg-4">
-      <div class="box">
-        <div class="icon">
-          <div class="image"><i class="fa fa-mobile" aria-hidden="true"></i></div>
-          <div class="info">
-            <h3 class="title">{{phone_num_section}}</h3>
-            <p *ngFor="let workOffice of workOffices">
-              <b>Studio di {{workOffice.city}} ({{workOffice.province}})</b>
-              <br>
-              <i class="fa fa-mobile" aria-hidden="true"></i> {{workOffice.phone_number}}
-              <br>
-              <br>
-            </p>
-          </div>
-        </div>
-        <div class="space"></div>
-      </div>
-    </div>
-
-    <div class="col-xs-12 col-sm-6 col-lg-4">
-      <div class="box">
-        <div class="icon">
-          <div class="image"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-          <div class="info">
-            <h3 class="title">{{address_section}}</h3>
-            <p *ngFor="let workOffice of workOffices">
-              <b>Studio di {{workOffice.city}} ({{workOffice.province}})</b>
-              <br>
-              <i class="fa fa-map-marker" aria-hidden="true"></i> {{workOffice.street}}, {{workOffice.number}} - {{workOffice.post_code}}
-              <br>
-              <br>
-            </p>
-          </div>
-        </div>
-        <div class="space"></div>
-      </div>
-    </div>
+    <button [routerLink]="['/contacts']" mdbBtn type="button" outline="true" color="indigo" mdbWavesEffect>Contattami</button>
   </div>
-</div>
+</section>

@@ -1,4 +1,4 @@
-<div class="container-fluid timeline-container text-center">
+<div class="container-fluid timeline-container text-center" *ngIf="settings != null">
       
   <div class="card hovercard mb-5">
       <div class="cardheader">
@@ -10,7 +10,7 @@
           </div>
       </div>
       <div class="avatar">
-          <img alt="" src="./assets/about-me-image.jpg">
+          <img alt="" [src]="findSettingByName('image')">
       </div>
       <!-- Grid column -->
       <div class="mt-3">
@@ -27,7 +27,7 @@
 
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Introduzione">
-      <div class="m-5 text-left" [innerHTML]="latestIntroduction.text"></div>
+      <div class="m-5 text-left" [innerHTML]="findSettingByName('introduction')"></div>
     </mat-tab>
     <mat-tab label="Formazione/Esperienze">
       <app-timeline class="m-5"></app-timeline>

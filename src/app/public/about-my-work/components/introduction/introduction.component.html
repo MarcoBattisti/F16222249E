@@ -1,18 +1,18 @@
-<ng-parallax [config]="parallaxConfig" img="../../../../../assets/introduction-image.jpg" class="introduction">
+<ng-parallax [config]="parallaxConfig" [img]="findSettingByName('bg-introduction')" class="introduction">
   <div class="container-fluid row w-100 justify-content-center m-0 p-0 ">
     <img class="introduction-image mt-4 mb-1" src="assets/Logo1.png" >
   </div>
 
   <div class="container-fluid second-portion">
-    <div class="row w-100 m-0">
+    <div *ngIf="introductionInformations != null" class="row w-100 m-0">
 
-      <div *ngFor="let component of introductionComponents" class="col-xs-12 col-sm-6 col-lg-4 p-0 mb-1">
+      <div *ngFor="let information of introductionInformations" class="col-xs-12 col-sm-6 col-lg-4 p-0 mb-1">
         <div class="box">
           <div class="icon">
-            <div [ngClass]="component.iconAnimationEffect" class="image wow" [attr.data-wow-delay]="component.iconAnimationDelay" [attr.data-wow-offset]="component.iconAnimationOffset"><i class="{{component.icon}}"></i></div>
+            <div class="image wow fadeInUp" data-wow-delay="1s" data-wow-offset="3"><i [ngClass]="information.icon"></i></div>
             <div class="info">
-              <h3 [ngClass]="component.iconAnimationEffect" class="title wow" [attr.data-wow-delay]="component.iconAnimationDelay" [attr.data-wow-offset]="component.iconAnimationOffset">{{component.title}}</h3>
-              <p [ngClass]="component.textAnimationEffect" class="wow" [attr.data-wow-delay]="component.textAnimationDelay" [attr.data-wow-offset]="component.textAnimationOffset">{{component.paragraph}}</p>
+              <h3 class="title wow fadeInUp" data-wow-delay="1s" data-wow-offset="3">{{information.name}}</h3>
+              <p class="wow zoomIn" data-wow-delay="2.5s" data-wow-offset="3">{{information.value}}</p>
             </div>
           </div>
         </div>

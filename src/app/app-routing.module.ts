@@ -8,22 +8,10 @@ import {Error404Component} from './error-pages/error404/error404.component';
 import {AboutMePageComponent} from './public/about-me-page/about-me-page.component';
 import {AboutMyWorkComponent} from './public/about-my-work/about-my-work.component';
 import {SingleNewsComponent} from './common-components/single-news/single-news.component';
-import {LoginComponent} from './authentication/login/login.component';
-import {AuthGuard} from './authentication/auth.guard';
-import {PrivateMainComponent} from './private/private-main.component';
-import {PrivateHomePageComponent} from './private/private-home-page/private-home-page.component';
 
 const routes: Routes = [
   // Redirects routes
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'admin', redirectTo: '/admin/home'},
-  // Login routes
-  {path: 'auth/login', component: LoginComponent},
-  // Admin routes
-  {path: 'admin', component: PrivateMainComponent, canActivate: [AuthGuard],
-    children: [
-      {path: 'home', component: PrivateHomePageComponent}
-    ]},
   // Public routes
   {path: '', component: PublicMainComponent,
     children: [

@@ -1,10 +1,10 @@
-<ng-parallax [config]="parallaxConfig" img="../../../../../assets/services-part-image.jpeg" class="introduction">
+<ng-parallax [config]="parallaxConfig" [img]="findSettingByName('bg-services')" class="introduction">
   <div class="row m-0 p-4 justify-content-center">
-    <div class="col-4 pt-4 text-center">
-      <div id="servicesPart" class="row m-1 align-middle wow zoomIn" data-wow-delay="0.5s" data-wow-offset="100">
-          <h2 class="col-9 m-0 text-center">i miei servizi</h2>
+    <div class="col-md-4 pt-4 text-center">
+      <div id="servicesPart" class="row justify-content-center m-1 align-middle wow zoomIn" data-wow-delay="0.5s" data-wow-offset="100">
+          <h2 class="services-title col m-0 text-center"><u>i miei servizi</u></h2>
 
-          <i class="col fa fa-briefcase fa-3x text-left"></i>
+          <i class="col-1 fa fa-briefcase fa-3x text-left"></i>
       </div>
     </div>
   </div>

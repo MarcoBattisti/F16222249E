@@ -1,7 +1,0 @@
-<div class="page-wrapper" [ngClass]="{'toggled' : getSideBarState()}">
-  <app-sidebar></app-sidebar>
-  <main class="page-content">
-      <router-outlet *ngIf="loading === false"></router-outlet>
-  </main>
-</div>
-<ngx-loading [show]="loading"></ngx-loading>

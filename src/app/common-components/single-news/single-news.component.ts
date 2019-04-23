@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {PostsService} from '../../public/news-page/services/posts.service';
 import {AppComponent} from '../../app.component';
 import {PostItem} from '../../public/news-page/models/post-item';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-single-news',
@@ -23,7 +24,8 @@ export class SingleNewsComponent implements OnInit {
 
   private env = this.appComponent.env;
 
-  constructor(private route: ActivatedRoute, private postsService: PostsService, private appComponent: AppComponent) {}
+  constructor(private route: ActivatedRoute, private postsService: PostsService, private appComponent: AppComponent,
+              private titleService: Title) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -37,6 +39,7 @@ export class SingleNewsComponent implements OnInit {
     this.postsService.getPostById(this.env.apiUrl, id).subscribe(
       post => {
         this.post = post;
+        this.titleService.setTitle(this.appComponent.title + ' - ' + this.post.title);
       },
       err => console.error(err)
     );

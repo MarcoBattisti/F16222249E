@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ServicesService} from '../../services/services.service';
 import {Service} from '../../models/service';
-import {CarouselItemService} from '../../../home-page/services/carousel-item.service';
 import {AppComponent} from '../../../../app.component';
 import {IParallaxScrollConfig} from 'ng2-parallaxscroll';
+import {SettingsService} from '../../../../settings/services/settings.service';
+import {Setting} from '../../../../settings/models/setting';
 
 @Component({
   selector: 'app-list-of-services',
@@ -12,9 +13,11 @@ import {IParallaxScrollConfig} from 'ng2-parallaxscroll';
 })
 export class ListOfServicesComponent implements OnInit {
 
-  private env = this.appComponent.env;
+  @Input() settings: Setting[];
 
   listOfServices: Service[];
+
+  private env = this.appComponent.env;
 
   parallaxConfig: IParallaxScrollConfig = {
     axis: 'Y',
@@ -25,6 +28,10 @@ export class ListOfServicesComponent implements OnInit {
 
   ngOnInit() {
     this.servicesService.getServices(this.env.apiUrl).subscribe(data => this.listOfServices = data);
+  }
+
+  findSettingByName(name: string) {
+    return this.settings.find(x => x.name === name).value;
   }
 
 }

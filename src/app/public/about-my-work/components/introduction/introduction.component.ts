@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IParallaxScrollConfig} from 'ng2-parallaxscroll';
+import {Setting} from '../../../../settings/models/setting';
+import {IntroductionInformationsService} from '../../services/introduction-informations.service';
+import {AppComponent} from '../../../../app.component';
+import {IntroductionInformation} from '../../models/introduction-information';
 
 @Component({
   selector: 'app-introduction',
@@ -8,76 +12,27 @@ import {IParallaxScrollConfig} from 'ng2-parallaxscroll';
 })
 export class IntroductionComponent implements OnInit {
 
-  introductionComponents = [
-    new IntroComponent(
-      'Passione',
-      'In tutto ciò che faccio metto l\'amore e la mia grande passione per la psicologia.',
-      'fa fa-heart',
-      'zoomIn',
-      '1s',
-      '3',
-      'fadeInUp',
-      '2.5s',
-      '3'
-    ),
-    new IntroComponent(
-      'Attenzione',
-      'Il mio obiettivo è aiutare con cura e precisione.',
-      'fa fa-eye',
-      'zoomIn',
-      '1s',
-      '3',
-      'fadeInUp',
-      '2.5s',
-      '3'),
-    new IntroComponent(
-      'Professionalità',
-      'Competenza ed efficienza, le due parole fondamentali nel mio operato.',
-      'fa fa-handshake-o',
-      'zoomIn',
-      '1s',
-      '3',
-      'fadeInUp',
-      '2.5s',
-      '3')
-  ];
+  @Input() settings: Setting[];
+
+  private env = this.appComponent.env;
+
+  introductionInformations: IntroductionInformation[];
 
   parallaxConfig: IParallaxScrollConfig = {
     axis: 'Y',
     speed: -1.5
   };
 
-  constructor() { }
+  constructor(private introductionInformationsService: IntroductionInformationsService, private appComponent: AppComponent) { }
+
 
   ngOnInit() {
+    this.introductionInformationsService.getIntroductionInformations(this.env.apiUrl)
+      .subscribe(data => this.introductionInformations = data);
   }
 
-}
-
-
-class IntroComponent {
-
-  title: string;
-  paragraph: string;
-  icon: string;
-  textAnimationEffect: string;
-  textAnimationDelay: string;
-  textAnimationOffset: string;
-  iconAnimationEffect: string;
-  iconAnimationDelay: string;
-  iconAnimationOffset: string;
-
-  constructor(title: string, paragraph: string, icon: string,
-              iconAnimationEffect: string, iconAnimationDelay: string, iconAnimationOffset: string,
-              textAnimationEffect: string, textAnimationDelay: string, textAnimationOffset: string) {
-    this.title = title;
-    this.paragraph = paragraph;
-    this.icon = icon;
-    this.textAnimationEffect = textAnimationEffect;
-    this.textAnimationDelay = textAnimationDelay;
-    this.textAnimationOffset = textAnimationOffset;
-    this.iconAnimationEffect = iconAnimationEffect;
-    this.iconAnimationDelay = iconAnimationDelay;
-    this.iconAnimationOffset = iconAnimationOffset;
+  findSettingByName(name: string) {
+    return this.settings.find(x => x.name === name).value;
   }
+
 }

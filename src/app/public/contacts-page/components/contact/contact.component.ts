@@ -15,11 +15,11 @@ export class ContactComponent implements OnInit {
 
   @Input() contactSubjects: ContactsSubjects[];
 
-  private contactForm: FormGroup;
+  contactForm: FormGroup;
 
-  private selected: string;
+  selected: string;
 
-  private loading = false;
+  loading = false;
 
   env = this.appComponent.env;
 
@@ -36,13 +36,14 @@ export class ContactComponent implements OnInit {
   titleMaxLength = 15;
   bodyMaxLength = 80;
 
-  formNameMaxLength: number = 50;
-  formEmailMaxLength: number = 255;
-  formBodyMaxLength: number = 255;
-  
+  formNameMaxLength = 50;
+  formEmailMaxLength = 255;
+  formBodyMaxLength = 255;
+
   captchaResponse = null;
 
-  constructor(private fb: FormBuilder, private emailService: ContactEmailService, private snotifyService: SnotifyService, private appComponent: AppComponent) {
+  constructor(private fb: FormBuilder, private emailService: ContactEmailService, private snotifyService: SnotifyService,
+              private appComponent: AppComponent) {
     this.contactForm = fb.group({
       'contactFormName': ['', [Validators.required, Validators.maxLength(this.formNameMaxLength)]],
       'contactFormEmail': ['', [Validators.required, Validators.email, Validators.maxLength(this.formEmailMaxLength)]],
@@ -113,10 +114,10 @@ onSubmit() {
   this.emailService.sendEmail(e, this.env.emailUrl)
     .subscribe(data => {
       this.loading = false;
-      this.snotifyService.success("Messaggio inviato correttamente!", "Inviato!", this.getConfig());
+      this.snotifyService.success('Messaggio inviato correttamente!', 'Inviato!', this.getConfig());
     }, err => {
       this.loading = false;
-      this.snotifyService.error("Al momento non è possibile inviare il messaggio, riprova più tardi!", "Errore!", this.getConfig());
+      this.snotifyService.error('Al momento non è possibile inviare il messaggio, riprova più tardi!', 'Errore!', this.getConfig());
     } );
 }
 

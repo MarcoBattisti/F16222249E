@@ -9,11 +9,11 @@ import {WorkOfficesService} from '../../../contacts-page/services/work-offices.s
 })
 export class MyWorkInformationsComponent implements OnInit {
 
-  private workOffices: WorkOffices[];
+  workOffices: WorkOffices[];
 
-  private email_section = 'E-MAIL';
-  private phone_num_section = 'CONTATTI';
-  private address_section = 'INDIRIZZI';
+  email_section = 'E-MAIL';
+  phone_num_section = 'CONTATTI';
+  address_section = 'INDIRIZZI';
 
   constructor(private workOfficesService: WorkOfficesService) {
     this.workOffices = workOfficesService.workOffices;

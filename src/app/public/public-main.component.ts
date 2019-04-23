@@ -15,13 +15,14 @@ export class PublicMainComponent implements OnInit {
 
   private navbarItems: NavbarItem[];
   private workOffices: WorkOffices[];
-  private isDataAvailable: boolean;
+  isDataAvailable: boolean;
 
   loading = true;
 
   env = this.appComponent.env;
 
-  constructor(private router: Router, private navbarItemService: NavbarItemsService, private workOfficesService: WorkOfficesService, private appComponent: AppComponent) {
+  constructor(private router: Router, private navbarItemService: NavbarItemsService, private workOfficesService: WorkOfficesService,
+              private appComponent: AppComponent) {
     router.events.subscribe((event: RouterEvent) => {
       this.navigationInterceptor(event);
       window.scrollTo(0, 0);

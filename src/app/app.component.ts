@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../environments/environment';
-import { Angulartics2Clicky } from 'angulartics2/clicky';
+import { Angulartics2GoogleGlobalSiteTag } from 'angulartics2/gst';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,12 @@ import { Angulartics2Clicky } from 'angulartics2/clicky';
 })
 export class AppComponent {
 
+  title = 'Lisa Battisti Psicologa';
+
   env = environment;
 
-  constructor(angulartics2Clicky: Angulartics2Clicky) {
-    angulartics2Clicky.startTracking();
+  // import Angulartics2GoogleGlobalSiteTag in root component
+  constructor(angulartics: Angulartics2GoogleGlobalSiteTag) {
+    angulartics.startTracking();
   }
-
 }

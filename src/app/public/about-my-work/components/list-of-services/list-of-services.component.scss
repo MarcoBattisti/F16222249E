@@ -17,6 +17,18 @@ h2 {
   text-transform: uppercase;
 }
 
-#servicesPart {
-  border-bottom: 4px solid black;
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767px) {
+
+  .services-title {
+    display: contents;
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 767px) {
+
+  .services-title {
+    display: contents;
+  }
 }

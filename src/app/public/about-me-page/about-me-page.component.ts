@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {IntroductionService} from './services/introduction.service';
-import {Introduction} from './services/models/introduction';
 import {AppComponent} from '../../app.component';
+import {SettingsService} from '../../settings/services/settings.service';
+import {Setting} from '../../settings/models/setting';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about-me-page',
@@ -10,16 +11,29 @@ import {AppComponent} from '../../app.component';
 })
 export class AboutMePageComponent implements OnInit {
 
-  latestIntroduction: Introduction;
+  section = 'about-me';
+
+  settings: Setting[];
 
   private env = this.appComponent.env;
 
-  constructor(private introductionsService: IntroductionService, private appComponent: AppComponent) {}
-
-  ngOnInit() {
-    this.introductionsService.getIntroductions(this.env.apiUrl).subscribe(data => {
-      this.latestIntroduction = data;
-    });
+  constructor(private settingsService: SettingsService, private appComponent: AppComponent,
+              private titleService: Title) {
+    this.titleService.setTitle(appComponent.title + ' - Chi sono');
   }
 
+  ngOnInit() {
+    this.getSettings();
+  }
+
+  private getSettings() {
+    this.settingsService.getSettingsBySection(this.env.apiUrl, this.section).subscribe(
+      data => { this.settings = data; },
+      err => console.error(err),
+    );
+  }
+
+  findSettingByName(name: string) {
+    return this.settings.find(x => x.name === name).value;
+  }
 }
