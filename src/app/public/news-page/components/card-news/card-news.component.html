@@ -30,7 +30,7 @@
 
       <h4 class="h4 mb-4">{{data.title}}</h4>
 
-      <p class="font-weight-normal">{{(data.body.length>6)? (data.body | slice:0:250)+'..' : (data.body)}}</p>
+      <div [innerHTML]="(data.body.length>6) ? (data.body | slice:0:250)+'..' : (data.body)"></div>
       <p class="font-weight-normal">da <a><strong>{{data.author}}</strong></a>, {{data.date | date:"dd/MM/yy"}}</p>
 
       <a [routerLink]="['/news', data.id]" mdbBtn color="elegant" mdbWavesEffect>Leggi di più..</a>
