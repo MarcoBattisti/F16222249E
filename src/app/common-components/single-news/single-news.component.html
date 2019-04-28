@@ -1,0 +1,82 @@
+<div class="container-fluid mt-3 mb-3" *ngIf="contentsAreLoaded">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="news-title">
+                    <h2>{{post.title}}</h2>
+                  </div>
+                  <div class="news-cats">
+                    <ul class="list-unstyled list-inline mb-1">
+                      <li class="list-inline-item">
+                        <i class="fa fa-tag text-success"></i>
+                        <small> {{post.topic}}</small>
+                      </li>
+                      <li class="list-inline-item">
+                        <i class="fa fa-user text-success"></i>
+                        <small> {{post.author}}</small>
+                      </li>
+                      <li class="list-inline-item">
+                        <i class="fa fa-calendar text-success"></i>
+                        <small> {{post.date | date:"dd/MM/yy"}}</small>
+                      </li>
+                    </ul>
+                  </div>
+                  <hr>
+                  <div class="news-image text-center">
+                    <img class="img-fluid" [src]=post.image_link>
+                  </div>
+                  <div class="mt-4 news-content">
+                    <p class="text-justify">{{post.body}}</p>
+                  </div>
+                  <hr>
+                  <div class="news-author">
+                    <div class="row">
+                      <div class="col">
+                        <div class="auth-title">
+                          <h4 class="author h4"> Da: {{post.author}}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-3">
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5>Ultimi articoli aggiunti</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group">
+
+              <a [routerLink]="['/news', tempPost.id]" class="list-group-item list-group-item-action" *ngFor="let tempPost of latestPosts">
+                <div class="row">
+                  <img class="col-5 news-image-link" [src]=tempPost.image_link>
+                  <p class="col">{{tempPost.title}}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

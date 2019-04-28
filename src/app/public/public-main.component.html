@@ -1,25 +1,90 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+<mdb-navbar *ngIf="isDataAvailable" SideClass="navbar navbar-expand-lg navbar-dark elegant-color sticky-top scrolling-navbar">
   <mdb-navbar-brand>
     <a class="navbar-brand" href="#">
-      <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="25" alt="">
+      <img src="./assets/Logo1.png" height="50" alt="">
     </a>
   </mdb-navbar-brand>
   <links>
     <div class="navbar-nav">
-      <a [ngClass]="{'enabled': toggle, 'disabled': !toggle}" routerLink="/{{navbarItem.path!=undefined ? navbarItem.path : navbarItem.name.toLowerCase()}}" routerLinkActive="active" class="nav-item nav-link waves-light" *ngFor="let navbarItem of navbarItems" mdbWavesEffect>{{navbarItem.name}}</a>
+      <a routerLink="/{{navbarItem.path!=undefined ? navbarItem.path : navbarItem.name.toLowerCase()}}" routerLinkActive="active" class="nav-item nav-link waves-light" *ngFor="let navbarItem of navbarItems" mdbWavesEffect>{{navbarItem.name}}</a>
     </div>
   </links>
 </mdb-navbar>
-<!--Carousel Wrapper-->
-<mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'">
-  <mdb-carousel-item>
-    <div class="view w-100">
-      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
-      <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+
+<div class="p-0 m-0 fit-window-screen">
+  <router-outlet *ngIf="loading === false"></router-outlet>
+</div>
+<ngx-loading [show]="loading"></ngx-loading>
+
+<!-- Footer -->
+<footer *ngIf="isDataAvailable" class="page-footer font-small footer-dark pt-3">
+
+  <!-- Footer Text -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-1 mt-md-0 mt-3 p-4 container-fluid">
+
+        <!-- Content -->
+        <img src="./assets/Logo1.png" height="75" alt="">
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mt-md-0 mt-3 footer-item-divider">
+
+        <!-- Content -->
+        <h5 class="text-uppercase font-weight-bold footer-item-title">Naviga nel sito</h5>
+        <a *ngFor="let navbarItem of navbarItems" href="/{{navbarItem.path!=undefined ? navbarItem.path : navbarItem.name.toLowerCase()}}">{{navbarItem.name}}<br> </a>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mt-md-0 mt-3 footer-item-divider">
+
+        <!-- Content -->
+        <h5 class="text-uppercase font-weight-bold footer-item-title">Sedi</h5>
+        <div *ngFor="let office of workOffices">
+          <i class="fa fa-map-marker" aria-hidden="true"></i> {{office.street}}, {{office.number}} - {{office.post_code}} {{office.city}} ({{office.province}}) <br>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mt-md-0 mt-3 footer-item-divider">
+
+        <!-- Content -->
+        <h5 class="text-uppercase font-weight-bold footer-item-title">Seguimi</h5>
+        <a href="https://www.linkedin.com/in/lisa-battisti-648453a4">
+          <i class="fa fa-linkedin-square fa-2x footer-social-item" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/battisti.psicologa/">
+          <i class="fa fa-facebook-square fa-2x footer-social-item" aria-hidden="true"></i>
+        </a>
+      </div>
+      <!-- Grid column -->
+
     </div>
-    <div class="carousel-caption">
-      <h3 class="h3-responsive">Light mask</h3>
-      <p>First text</p>
-    </div>
-  </mdb-carousel-item>
-<router-outlet></router-outlet>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Text -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-2">
+    Psicologa iscritta all'Albo degli Psicologi della Toscana (nr xxxx) P.I. xxxxxxxxx
+
+    <br>
+
+    Copyrights ©. All Rights Reserved Lisa Battisti.
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

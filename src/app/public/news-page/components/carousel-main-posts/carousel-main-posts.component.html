@@ -1,0 +1,15 @@
+<!--Carousel Wrapper-->
+<mdb-carousel [isControls]="true" [animation]="'slide'">
+
+  <ng-container *ngFor="let data of (datas | mainPosts)">
+
+    <mdb-carousel-item class="justify-content-center news-item">
+
+      <app-card-news class="news-flex-content-center" [data]="data" [isImportant]="true"></app-card-news>
+
+    </mdb-carousel-item>
+
+  </ng-container>
+
+</mdb-carousel>
+<!--Carousel Wrapper-->

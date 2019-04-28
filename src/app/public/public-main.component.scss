@@ -6,3 +6,20 @@
 a.active {
   width: fit-content;
 }
+.footer-item-divider{
+  margin-left: auto;
+  border-left:1px solid grey;
+}
+
+.footer-item-title{
+  border-bottom: 2px solid white;
+}
+
+.footer-social-item{
+  margin-right: 5px;
+}
+
+.footer-dark{
+  background-color: #333;
+  color: #CCC;
+}

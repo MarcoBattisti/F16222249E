@@ -1,0 +1,34 @@
+<section class="welcome-website">
+  <div class="container">
+    <div class="row mar-top-30">
+      <div class="col-sm-4">
+        <div class="box text-center contact-us-box">
+          <div class="incon-box">
+            <i class="fa fa-map" aria-hidden="true"></i>
+          </div>
+          <h3 class="box-tittle">I miei uffici </h3>
+          <p class="box-text" *ngFor="let workOffice of workOffices">{{workOffice.street}}, {{workOffice.number}} - {{workOffice.post_code}}, {{workOffice.city}} ({{workOffice.province}})</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="box text-center contact-us-box">
+          <div class="incon-box">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+          </div>
+          <h3 class="box-tittle">Telefono </h3>
+          <p class="box-text"*ngFor="let workOffice of workOffices">{{workOffice.phone_number}} </p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="box text-center contact-us-box">
+          <div class="incon-box">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          </div>
+          <h3 class="box-tittle">Email </h3>
+          <p class="box-text" *ngFor="let workOffice of workOffices">{{workOffice.email}}</p>
+        </div>
+      </div>
+    </div>
+    <button [routerLink]="['/contacts']" mdbBtn type="button" outline="true" color="indigo" mdbWavesEffect>Contattami</button>
+  </div>
+</section>

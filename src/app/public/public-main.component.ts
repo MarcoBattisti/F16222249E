@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavbarItem} from './home-page/models/navbar-item';
 import {NavbarItemsService} from './home-page/services/navbar-items.service';
-import {ApiConfigService} from '../api-config-service';
-import {CarouselItem} from './home-page/models/carousel-item';
-import {CarouselItemService} from './home-page/services/carousel-item.service';
+import {WorkOffices} from '../work-offices';
+import {WorkOfficesService} from './contacts-page/services/work-offices.service';
+import {AppComponent} from '../app.component';
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-public-main',
@@ -13,58 +14,55 @@ import {CarouselItemService} from './home-page/services/carousel-item.service';
 export class PublicMainComponent implements OnInit {
 
   private navbarItems: NavbarItem[];
+  private workOffices: WorkOffices[];
+  isDataAvailable: boolean;
 
-  private carouselItems: CarouselItem[];
+  loading = true;
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private navbarItemService: NavbarItemsService, private carouselItemService: CarouselItemService, private apiConfig: ApiConfigService) {}
+  env = this.appComponent.env;
+
+  constructor(private router: Router, private navbarItemService: NavbarItemsService, private workOfficesService: WorkOfficesService,
+              private appComponent: AppComponent) {
+    router.events.subscribe((event: RouterEvent) => {
+      this.navigationInterceptor(event);
+      window.scrollTo(0, 0);
+    });
+    this.workOffices = this.workOfficesService.workOffices;
+  }
+
+  // Shows and hides the loading spinner during RouterEvent changes
+  navigationInterceptor(event: RouterEvent): void {
+    if (event instanceof NavigationStart) {
+      this.loading = true;
+    }
+    if (event instanceof NavigationEnd) {
+      setTimeout(() => {
+        this.loading = false;
+      }, 2000);
+    }
+
+    // Set loading state to false in both of the below events to hide the spinner in case a request fails
+    if (event instanceof NavigationCancel) {
+      setTimeout(() => { // here
+        this.loading = false;
+      }, 2000);
+    }
+    if (event instanceof NavigationError) {
+      setTimeout(() => { // here
+        this.loading = false;
+      }, 2000);
+    }
+  }
 
   getNavbarItems() {
-    this.navbarItemService.getNavbarItems(this.apiConfig).subscribe(
-      data => { this.navbarItems = data; },
-      err => console.error(err),
-      () => console.log(this.navbarItems)
+    this.navbarItemService.getNavbarItems(this.env.apiUrl).subscribe(
+      data => { this.navbarItems = data;  this.isDataAvailable = true; },
+      err => console.error(err)
     );
   }
-
-  getCarouselItems() {
-    this.carouselItemService.getCarouselItems(this.apiConfig).subscribe(
-      data => { this.carouselItems = data; },
-      err => console.error(err),
-      () => console.log(this.carouselItems)
-    );
-  }
-/*this.navbarItems =    [
-  {
-    'id': 1,
-    'name': 'Home',
-    'path': null
-  },
-  {
-    'id': 2,
-    'name': 'News',
-    'path': null
-  },
-  {
-    'id': 3,
-    'name': 'Chi sono',
-    'path': 'about-me'
-  },
-  {
-    'id': 4,
-    'name': 'Di cosa mi occupo',
-    'path': 'sbout-my-work'
-  },
-  {
-    'id': 5,
-    'name': 'Contatti',
-    'path': 'contacts'
-  }
-];*/
 
   ngOnInit() {
     this.getNavbarItems();
-    this.getCarouselItems();
   }
 
 }

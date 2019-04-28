@@ -1,0 +1,101 @@
+<!-- Default form contact -->
+<form class="text-center p-2 fit-content-page" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+  <p class="h4 mb-3 font-weight-bold">Contattami</p>
+
+  <!-- Name -->
+  <div class="md-form text-left">
+    <input mdbInput mdbValidate type="text" formControlName="contactFormName"
+           id="defaultContactFormName" class="form-control mb-4" placeholder="Nome">
+      <mdb-error *ngIf="contactFormName.invalid && (contactFormName.dirty || contactFormName.touched)">
+        <span *ngIf="contactFormName.errors.required">Campo Richiesto</span>
+        <span *ngIf="contactFormName.errors.maxlength">Deve contenere al massimo {{formNameMaxLength}} caratteri</span>
+      </mdb-error>
+    <mdb-success *ngIf="contactFormName.valid && (contactFormName.dirty || contactFormName.touched)"></mdb-success>
+  </div>
+
+  <!-- Email -->
+  <div class="md-form text-left">
+    <input mdbInput mdbValidate type="email"
+           formControlName="contactFormEmail"
+           id="defaultContactFormEmail" class="form-control mb-5" placeholder="E-mail">
+    <mdb-error *ngIf="contactFormEmail.invalid && (contactFormEmail.dirty || contactFormEmail.touched)">
+      <span *ngIf="contactFormEmail.errors.required">Campo Richiesto</span>
+      <ul *ngIf="!contactFormEmail.errors.required">
+        <li *ngIf="contactFormEmail.errors.maxlength">Deve contenere al massimo {{formEmailMaxLength}} caratteri</li>
+        <li *ngIf="contactFormEmail.errors.email">Deve essere un e-mail valida</li>
+      </ul>
+    </mdb-error>
+    <mdb-success *ngIf="contactFormEmail.valid && (contactFormEmail.dirty || contactFormEmail.touched)"></mdb-success>
+  </div>
+
+  <div class="text-left">
+    <!-- Subject -->
+    <label>Oggetto</label>
+    <ng-select
+      [required]="true"
+      (change)="onChangeSubject()"
+      [ngModelOptions]="{standalone: true}"
+      [(ngModel)]="selected"
+      [items]="contactSubjects"
+      bindLabel="value"
+      bindValue="value"
+      [closeOnSelect]="true"
+      [searchable]="false"
+      placeholder="Seleziona un oggetto">
+    </ng-select>
+  </div>
+
+  <!-- Message -->
+  <div *ngIf="selected === 'Altro..'" class="form-group md-form text-left">
+    <textarea type="text" data-error="Campo richiesto" data-success="   " formControlName="contactFormOtherSubject"
+              class="md-textarea form-control" mdbInputDirective id="exampleFormControlTextarea3"
+              rows="1" placeholder="Oggetto da specificare.."></textarea>
+  </div>
+
+  <!-- Message -->
+  <div class="md-form text-left">
+    <div class="form-group">
+    <textarea mdbInput mdbValidate formControlName="contactFormMessage"
+              class="md-textarea form-control mb-4" id="exampleFormControlTextarea2"
+              rows="2" placeholder="Messaggio"></textarea>
+    <mdb-error *ngIf="contactFormMessage.invalid && (contactFormMessage.dirty || contactFormMessage.touched)">
+        <span *ngIf="contactFormMessage.errors.required">Campo Richiesto</span>
+        <span *ngIf="contactFormMessage.errors.maxlength">Deve contenere al massimo {{formBodyMaxLength}} caratteri</span>
+      </mdb-error>
+    <mdb-success *ngIf="contactFormMessage.valid && (contactFormMessage.dirty || contactFormMessage.touched)"></mdb-success>
+    </div>
+  </div>
+
+  <!-- Copy -->
+  <div class="custom-control custom-checkbox mb-4">
+    <input formControlName="contactFormCopy" type="checkbox" class="custom-control-input"
+           id="defaultContactFormCopy">
+    <label class="custom-control-label" for="defaultContactFormCopy">Mandami una copia del messaggio</label>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="background-fit-content">
+      <re-captcha formControlName="captchaForm" (resolved)="resolved($event)" ></re-captcha>
+    </div>
+  </div>
+
+  <!-- Send button -->
+  <button mdbBtn color="elegant" [disabled]="!contactForm.valid" class="z-depth-0 my-4 waves-effect"
+          mdbWavesEffect type="submit" >Invia
+  </button>
+
+</form>
+<!-- Default form contact -->
+<ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Invio in corso...
+      </h3>
+    </div>
+  </ng-template>
+  
+  <ngx-loading [show]="loading"
+    [template]="customLoadingTemplate"></ngx-loading>
+
+  <ng-snotify class="simple"></ng-snotify>

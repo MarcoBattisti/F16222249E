@@ -1,0 +1,147 @@
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767px) {
+
+  .text span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4d4645;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .text h1 {
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 767px) {
+
+  .text span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4d4645;
+    text-transform: uppercase;
+    letter-spacing: 3px; }
+
+  .text h1 {
+    letter-spacing: 1px;
+    font-weight: 900; }
+}
+
+
+.screen-adjust {
+    min-height: 90vh;
+    max-height: 90vh;
+  }
+
+a {
+  color: inherit;
+}
+.latest-news-title {
+  font-weight: bold;
+  border-bottom: 4px solid #2e6da4;
+  display: inline-block;
+}
+
+/******************  News Slider Demo-11 *******************/
+.post-slide11{
+  background: #fff;
+  margin: 0 15px;
+  box-shadow: 0 1px 2px rgba(43,59,93,0.30);
+  margin-bottom:2em;
+  height: 420px;
+}
+.post-slide11 .post-img{
+  position:relative;
+}
+.post-slide11 .over-layer{
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity:0;
+  cursor: pointer;
+  transition: all 0.30s ease 0s;
+}
+.post-slide11:hover .over-layer{
+  opacity:1;
+}
+.post-slide11 .post-img img{
+  width: 100%;
+  height: 250px;
+}
+.post-slide11 .post-title{
+  margin:25px 0 15px 0;
+  padding:0 15px;
+}
+.post-slide11 .post-title:before{
+  content:"";
+  border:2px solid #2e6da4;
+  width:18%;
+  display: block;
+  margin-bottom:15px;
+}
+.post-slide11 .post-title a{
+  font-size: 20px;
+  font-weight:bold;
+  color:#333;
+  display: inline-block;
+  text-transform:capitalize;
+  transition: all 0.3s ease 0s;
+}
+.post-slide11 .post-title a:hover{
+  text-decoration: none;
+  color: #2e6da4;
+}
+.post-slide11 .post-date{
+  text-transform:capitalize;
+  padding:0 15px;
+  color: #2e6da4;
+  font-size:13px;
+}
+.post-slide11 .post-date:before{
+  margin-right: 7px;
+  color: #2e6da4;
+}
+.owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span{
+  background: #2e6da4;
+}
+
+//------------------------------------------------------------
+.desc a {
+  color: #212121;
+  font-weight: bold;
+}
+.text .img {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%; }
+.img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+.text .subheading {
+  font-size: 24px;
+  color: #837776;
+  font-weight: 300; }
+
+
+//-----------------------------------------------
+
+.block-18 .text span {
+  display: block; }
+.text {
+  display: block;
+  width: 100%; }
+
+//-----------------------------------------------
+
+.statistics {
+  border-left: #635a59 solid 1px;
+}

@@ -1,0 +1,8 @@
+<div *ngIf="settings != null" class="row justify-content-md-center bg m-0" [ngStyle]="{'background-image': ' url(' + findSettingByName('bg-image') + ')'}">
+  <div class="col-md-4 m-3 rounded white">
+    <app-contact [contactSubjects]="contactSubjects"></app-contact>
+  </div>
+  <div class="col-md-4 m-3 text-white">
+    <app-information [offices]="workOffices"></app-information>
+  </div>
+</div>

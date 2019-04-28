@@ -1,0 +1,26 @@
+<div class="container-fluid ">
+  <div class="row">
+    <ul class="col timeline">
+        <li class="rounded-3" [ngClass]="{'timeline-inverted': (i % 2 != 0) }" *ngFor="let event of timelineEvents; let i = index;">
+          <div class="timeline-badge" [ngStyle]="{'background-color': event.color}"><i [ngClass]="event.icon != null ? event.icon : ''"></i></div>
+          <mdb-card class="z-depth-2 timeline-panel" [ngStyle]="{'border': '1px solid ' + event.color}">
+            <!--Card content-->
+            <mdb-card-body class="hoverable">
+
+              <div class="p-2" [ngStyle]="{'background-color': event.color}">
+              <!--Title-->
+                <mdb-card-title>
+                  <h4 class="text-white">{{event.title}}</h4>
+                </mdb-card-title>
+              </div>
+
+              <div class="p-2">
+                <!--Text-->
+                <mdb-card-text [innerHTML]="event.text"></mdb-card-text>
+              </div>
+            </mdb-card-body>
+          </mdb-card>
+        </li>
+    </ul>
+  </div>
+</div>

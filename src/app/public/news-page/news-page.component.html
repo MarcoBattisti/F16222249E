@@ -1,0 +1,52 @@
+<div *ngIf="pagedPostsAreLoaded && listOfPosts != null && listOfPosts.length > 0">
+  <div class="grey lighten-1 row justify-content-center p-0 m-0" ng *ngIf="mainPostsAreLoaded">
+    <app-carousel-main-posts class="m-2" class="m-4" *ngIf="countOfMainTopic() > 1" [datas]="postsArguments" ></app-carousel-main-posts>
+    <app-card-news class="m-2 news-flex-content-center" *ngIf="countOfMainTopic() === 1" [data]="postsArguments[0]" [isImportant]="true"></app-card-news>
+  </div>
+
+  <ul id="topPage" class="nav justify-content-center grey lighten-2 py-3">
+    <!-- Grid row -->
+    <div class="row container-fluid justify-content-center">
+      <div class="justify-content-center">
+        Filtra per argomento:
+      </div>
+      <div class="col-md-4">
+        <ng-select
+          [(ngModel)] = "selected"
+          (ngModelChange)="onSelect(selected)"
+          [items]="postTopics"
+          [multiple]="true"
+          [closeOnSelect]="true"
+          [searchable]="false"
+          placeholder="Seleziona gli argomenti">
+        </ng-select>
+      </div>
+    </div>
+  </ul>
+
+  <ng-container *ngFor="let post of listOfPosts">
+    <app-card-news class="m-4" style="display: flex; justify-content: center;" [data]="post" [isImportant]="false"></app-card-news>
+  </ng-container>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination pagination-circle pg-dark justify-content-center">
+      <li [ngClass]=" (pagination.prev_page_url == null) ? 'disabled' : ''" class="page-item" (click)="changePage(pagination.current_page-1)">
+        <a pageScroll [pageScrollDuration]="250" [pageScrollOffset]="70" [pageScrollInterruptible]="false" href="#topPage" class="page-link" mdbWavesEffect>
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li *ngIf="pagination.prev_page_url != null" (click)="changePage(pagination.current_page-1)" class="page-item"><a pageScroll [pageScrollDuration]="250" [pageScrollOffset]="70" [pageScrollInterruptible]="false" href="#topPage" class="page-link" mdbWavesEffect>{{pagination.current_page - 1}}</a></li>
+      <li class="page-item active"><a class="page-link" mdbWavesEffect>{{pagination.current_page}}</a></li>
+      <li *ngIf="pagination.next_page_url != null" (click)="changePage(pagination.current_page+1)" class="page-item"><a pageScroll [pageScrollDuration]="250" [pageScrollOffset]="70" [pageScrollInterruptible]="false" href="#topPage" class="page-link" mdbWavesEffect>{{pagination.current_page + 1}}</a></li>
+      <li [ngClass]="(pagination.next_page_url == null) ?'disabled' : ''" class="page-item" (click)="changePage(pagination.current_page+1)">
+        <a pageScroll [pageScrollDuration]="250" [pageScrollOffset]="70" [pageScrollInterruptible]="false" href="#topPage" class="page-link" mdbWavesEffect>
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="m-4 jumbotron text-center hoverable p-2 rounded inline-block" *ngIf="mainPostsAreLoaded && (listOfPosts == null || listOfPosts.length < 1)">
+  <h4><i><mdb-icon fas icon="info-circle"></mdb-icon> Al momento non ci sono notizie..</i></h4>
+</div>

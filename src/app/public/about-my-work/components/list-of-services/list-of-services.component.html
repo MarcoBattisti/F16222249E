@@ -1,0 +1,33 @@
+<ng-parallax [config]="parallaxConfig" [img]="findSettingByName('bg-services')" class="introduction">
+  <div class="row m-0 p-4 justify-content-center">
+    <div class="col-md-4 pt-4 text-center">
+      <div id="servicesPart" class="row justify-content-center m-1 align-middle wow zoomIn" data-wow-delay="0.5s" data-wow-offset="100">
+          <h2 class="services-title col m-0 text-center"><u>i miei servizi</u></h2>
+
+          <i class="col-1 fa fa-briefcase fa-3x text-left"></i>
+      </div>
+    </div>
+  </div>
+  <div class="row m-0 p-3">
+    <div class="col-md-4 p-3 wow zoomIn" data-wow-delay="1s" data-wow-offset="150" *ngFor="let service of listOfServices">
+      <mdb-card>
+        <!--Card image-->
+        <mdb-card-img [src]="service.image" alt="Card image cap"></mdb-card-img>
+        <!--Card content-->
+        <mdb-card-body>
+
+          <!--Title-->
+          <mdb-card-title>
+            <h4>{{service.title}}</h4>
+          </mdb-card-title>
+
+          <!--Text-->
+          <mdb-card-text>
+            {{service.text}}
+          </mdb-card-text>
+
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</ng-parallax>

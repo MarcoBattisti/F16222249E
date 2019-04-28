@@ -1,0 +1,40 @@
+<div class="container-fluid timeline-container text-center" *ngIf="settings != null">
+      
+  <div class="card hovercard mb-5">
+      <div class="cardheader">
+          <div class="info">
+              <div class="title text-white">
+                  <h3><b>Lisa Battisti</b></h3>
+              </div>
+              <div class="desc"><i>Dott.ssa Psicologa</i></div>
+          </div>
+      </div>
+      <div class="avatar">
+          <img alt="" [src]="findSettingByName('image')">
+      </div>
+      <!-- Grid column -->
+      <div class="mt-3">
+        <!-- Content -->
+        <a href="https://www.linkedin.com/in/lisa-battisti-648453a4" style="color: inherit;">
+          <i class="fa fa-linkedin-square fa-2x mr-1"></i>
+        </a>
+        <a href="https://www.facebook.com/battisti.psicologa/" style="color: inherit;">
+          <i class="fa fa-facebook-square fa-2x mr-1" ></i>
+        </a>
+      </div>
+      <!-- Grid column -->
+  </div>
+
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Introduzione">
+      <div class="m-5 text-left" [innerHTML]="findSettingByName('introduction')"></div>
+    </mat-tab>
+    <mat-tab label="Formazione/Esperienze">
+      <app-timeline class="m-5"></app-timeline>
+    </mat-tab>
+    <mat-tab label="Contatti">
+      <app-my-work-informations></app-my-work-informations>
+    </mat-tab>
+  </mat-tab-group>
+  
+</div>

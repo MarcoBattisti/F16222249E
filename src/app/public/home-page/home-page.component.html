@@ -1,3 +1,65 @@
-<p>
-  home-page works!
-</p>
+<!--Carousel Wrapper-->
+<mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'">
+  <mdb-carousel-item *ngFor="let carouselItem of carouselItems">
+    <div class="view w-100 justify-content-center">
+      <img class="d-block screen-adjust w-100" src="{{carouselItem.backgroundLink}}" alt="{{carouselItem.author}}">
+      <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+    </div>
+    <div class="carousel-caption">
+      <h3 class="h3-responsive">"{{carouselItem.body}}"</h3>
+      <p>- {{carouselItem.author}}</p>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>
+
+<ng-parallax *ngIf="settings != null" [config]="parallaxConfig" [img]="findSettingByName('bg-about-me')" class="introduction">
+  <div class="p-2 m-0 row">
+    <div class="col text text-center">
+      <div class="img mb-4" [ngStyle]="{'background-image': ' url(' + findSettingByName('image') + ')'}"></div>
+      <div class="desc">
+
+        <div [innerHTML]="findSettingByName('image-text')"></div>
+
+        <div class="p-2">
+          <div class="row text-center">
+
+            <div class="col p-1 wow zoomIn" data-wow-delay="1s" data-wow-offset="55" *ngFor="let stat of stats; let i = index">
+              <div class="block-18">
+                <div class="text">
+                  <h1 class="font-weight-bold wow zoomIn" [attr.data-wow-delay]="formatIndexAsSeconds(i + 1)" data-wow-offset="60">{{stat.value}}</h1>
+                  <span class="wow zoomIn" [attr.data-wow-delay]="formatIndexAsSeconds(i)" data-wow-offset="40">{{stat.name}}</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="inline-block m-4 jumbotron text-center hoverable p-2 rounded light-grey wow zoomIn" data-wow-delay="1s" data-wow-offset="55">
+          <a [routerLink]="['/about-me']"><u>Scopri di più su di me..</u></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-parallax>
+
+<div class="container-fluid" *ngIf="carouselIsLoaded && latestPosts != null && latestPosts.length > 0">
+  <h3 class="h3 m-3 latest-news-title"><a [routerLink]="['/news']">Ultime notizie</a></h3>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let post of latestPosts">
+        <div class="post-slide11 z-depth-2">
+          <a [routerLink]="['/news', post.id]">
+            <div class="post-img">
+              <span class="over-layer"></span>
+              <img class="img-fluid" [src]="post.image_link" alt="">
+            </div>
+          </a>
+          <h3 class="post-title">
+            <a [routerLink]="['/news', post.id]">{{post.title}}</a>
+          </h3>
+          <span class="post-date"><i class="fa fa-calendar"></i> {{post.date | date:'longDate':'':'it'}}</span>
+        </div>
+      </div>
+  </div>
+</div>
