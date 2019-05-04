@@ -38,6 +38,12 @@ import { IntroductionComponent } from './public/about-my-work/components/introdu
 import { ListOfServicesComponent } from './public/about-my-work/components/list-of-services/list-of-services.component';
 import { SingleNewsComponent } from './common-components/single-news/single-news.component';
 import { Angulartics2Module } from 'angulartics2';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+
+library.add(fas, far);
 
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 declare var Hammer: any;
@@ -61,7 +67,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     return mc;
   }
 }
-
 
 const globalSettings: RecaptchaSettings = { siteKey: environment.siteKey };
 
@@ -115,6 +120,7 @@ export function loadOffices(workOfficeService: WorkOfficesService) {
     NgxPageScrollModule,
     ParallaxScrollModule,
     Angulartics2Module.forRoot({}),
+    FontAwesomeModule
   ],
   providers: [
     AppComponent,
